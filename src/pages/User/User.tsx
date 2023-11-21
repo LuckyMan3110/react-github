@@ -1,8 +1,9 @@
 import { useState,useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
 import './User.css';
 
@@ -11,6 +12,7 @@ export default function User() {
   const [followers, setFollowers] = useState([] as any[]);
   const [orgs, setOrgs] = useState([] as any[]);
   
+  const navigate = useNavigate();
   const params = useLocation();
   const repos_url: string = params.state.repos_url;
   const followers_url: string = params.state.followers_url;
@@ -45,7 +47,7 @@ export default function User() {
   return (
     <div id="User">
       <Container>
-        <h1>Github Repositories</h1>
+        <h1>Github Repositories<Button onClick={() => navigate('/')} id="backButton" size="lg" variant="link">Back</Button></h1>
         <Table hover variant="dark" >
           <thead>
             <tr>
